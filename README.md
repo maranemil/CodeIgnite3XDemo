@@ -1,6 +1,9 @@
 # CodeIgnite3XDemo
 CodeIgnite 3X Skeleton
 
+![alt text](https://github.com/maranemil/CodeIgnite3XDemo/raw/master/Screenshot.png "Screenshot 1")
+
+
 ### Resources
 
 #### MySQL
