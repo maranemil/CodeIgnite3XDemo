@@ -1,10 +1,12 @@
 # CodeIgnite3XDemo
 CodeIgnite 3X Skeleton
 
-## Resources
+### Resources
 
-https://dev.mysql.com/doc/refman/5.5/en/limit-optimization.html
-https://dev.mysql.com/doc/refman/5.7/en/select.html
+#### MySQL
+
+* [ MySQL limit optimization (https://dev.mysql.com/doc/refman/5.5/en/limit-optimization.html)]
+* [ MySQL select (https://dev.mysql.com/doc/refman/5.7/en/select.html) ]
 
 https://getbootstrap.com/docs/4.0/layout/grid/
 https://getbootstrap.com/docs/4.0/utilities/flex/
