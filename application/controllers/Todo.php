@@ -6,21 +6,49 @@ class Todo extends CI_Controller {
             parent::__construct();
             $this->load->model('todo_model');
             $this->load->helper('url_helper');
+            $this->load->library("pagination");
+    }
+
+
+    public function getPagination($limit){
+        $page = (isset($_GET["page"])) ? $_GET["page"] : 1;  
+        $total = $this->todo_model->record_count();
+        
+        $intPrevious = (intval($page - 1) > 1)  ? intval($page - 1):1;
+        $intCurrent = $page;
+        $intNext =  ( intval($page + 1) < intval($total/$limit)) ?  intval($page + 1) : intval($total/$limit);
+        $intLast = intval($total/$limit);
+        $intRand = intval(rand(1, $intLast ));
+
+        return array(
+            "first" => 1,
+            "prev" => $intPrevious,
+            "current" => $intCurrent,
+            "next" => $intNext,
+            "last" => $intLast,
+            "rand" => $intRand
+        );
     }
 
     public function index()
     {
-        $data['todo'] = $this->todo_model->get_todo();
+       
+
+        $limit = 6; // pagination
+        $arrPagination = $this->getPagination($limit);
+        $page = $arrPagination["current"];
+        $data['pagination'] = $arrPagination; 
+        $data['todo'] = $this->todo_model->get_todo($page,$limit);
         $data['title'] = 'News archive';
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header');
         $this->load->view('todo/index', $data);
         $this->load->view('templates/footer');
     }
 
     public function view($slug = NULL)
     {
-        $data['todo'] = $this->todo_model->get_todo($slug);
+        $data['todo'] = $this->todo_model->get_todo_post($slug);
         #print_r($data);
         if (empty($data['todo']))
         {
@@ -46,15 +74,18 @@ class Todo extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE)
         {
-            $this->load->view('templates/header', $data);
-            $this->load->view('todo/create');
+            $this->load->view('templates/header' );
+            $this->load->view('todo/create', $data);
             $this->load->view('templates/footer');
 
         }
         else
         {
             $this->todo_model->set_todo();
-            $this->load->view('todo/success');
+            #$this->load->view('todo/success');
+            $this->load->view('templates/header' );
+            $this->load->view('todo/create', $data);
+            $this->load->view('templates/footer');
         }
     }
 }

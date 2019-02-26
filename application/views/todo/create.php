@@ -1,15 +1,19 @@
-<h2><?php echo $title; ?></h2>
+<div class="row card">  
 
-<?php echo validation_errors(); ?>
+    <h2><?php echo $title; ?></h2>
 
-<?php echo form_open('todo/create'); ?>
+    <?php echo validation_errors(); ?>
 
-    <label for="title">Title</label>
-    <input type="input" name="title" /><br />
+    <?php echo form_open('todo/create'); ?>
 
-    <label for="desc">Text</label>
-    <textarea name="desc"></textarea><br />
+        <label for="title">Title</label>
+        <input type="input" name="title" /><br />
 
-    <input type="submit" name="submit" value="Create news item" />
+        <label for="desc">Text</label>
+        <textarea name="desc"></textarea><br />
 
-</form>
+        <input type="submit" name="submit" value="Create news item" />
+
+    </form>
+
+</div>

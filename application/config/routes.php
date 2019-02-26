@@ -57,4 +57,4 @@ $route['todo/create'] = 'todo/create';
 $route['todo/(:any)'] = 'todo/view/$1';
 $route['todo'] = 'todo';
 $route['(:any)'] = 'pages/view/$1';
-#$route['default_controller'] = 'todo/';
+$route['default_controller'] = 'todo/';
